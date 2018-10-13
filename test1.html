@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS Doodle</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.2.3/css-doodle.min.js"></script>
+    <style>
+        body{
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mydoodle {
+            margin-top: 8rem;
+            animation-name: spin;
+            animation-duration: 9000ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        @keyframes spin {
+            from {
+                transform:rotate(0deg);
+            }
+            to {
+                transform:rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <css-doodle class="mydoodle">
+        :doodle{
+            @grid: 8 / 40rem 40rem;
+            //@shape: star;
+            @shape: @pick('triangle', 'clover 4', 'hexagon', 'diamond', 'heart', 'star', 'circle');
+            //background: var(--bg3);
+            max-width: 90%;
+            transform: rotate(45deg) scale(1.5);
+        }
+        @keyframes turn {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes glow {
+            50% {
+                transform: scale(3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @shape: square;
+        
+        @random {
+            animation: glow 2s ease-out infinite;
+        }
+        :hover {
+            animation: turn .9s ease-out infinite;
+        }
+        /*:hover {
+            @shape: cross;
+        }*/
+        // @shape: @pick('triangle', 'clover 4', 'hexagon', 'diamond', 'heart');
+        background: @pick('#EE4266', '#F41142', '#9E223D', '#EF0033', '#F42C57');
+        margin: .5rem;
+        opacity: calc(@rand(5, 10)/10);
+    </css-doodle>
+    <script>
+        // refreshes the values when clicked on
+        const mydoodle = document.querySelector('.mydoodle');
+
+        mydoodle.addEventListener('click', () => {
+            mydoodle.update();
+        })
+    </script>
+</body>
+</html>

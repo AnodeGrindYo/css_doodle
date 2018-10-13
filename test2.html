@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test 2</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.4.9/css-doodle.min.js"></script>
+    <style>
+        body{
+            background: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .mydoodle {
+            margin-top: 14rem;
+            animation-name: spin;
+            animation-duration: 9000ms;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        @keyframes spin {
+            from {
+                transform:rotate(0deg);
+            }
+            to {
+                transform:rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <css-doodle class="mydoodle">
+    --cycle: @r(2s, 10s, .1);
+
+    :doodle {
+        @grid: 1x20 / 40rem;
+    }
+                
+    @place-cell: center;
+    @size: calc(@i() * 10%);
+
+    border-radius: 50%;
+    border-style: @pick(dashed, dashed double);
+    //border-style: @pick(dotted dashed, dashed double, double dotted);
+    border-width: calc(@i() * .5em);
+    
+    border-color: white;
+    transform: rotate(@r(360deg));
+
+    animation: rotation var(--cycle) linear infinite;
+
+    @keyframes rotation {
+        0 { transform: rotate(0deg); }
+        25% { transform: scale(.7); }
+        50% {
+        transform: rotate(359deg);
+        transform: scale(1.2);
+        }
+        75% { transform: scale(.4); }
+        100% {
+        transform: rotate(0deg);
+        transform: scale(1);
+        }
+    }
+
+    :hover {
+        border-color: red;
+    }
+
+    opacity: calc(@rand(1, 10)/10);
+        
+
+    </css-doodle>
+    
+    <script>
+    
+    </script>
+</body>
+</html>
